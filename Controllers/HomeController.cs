@@ -19,5 +19,23 @@ namespace WebApplication2.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Buy(int id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public string Buy(Purchase purchase)
+        {
+            purchase.DateTime = DateTime.Now;
+
+            phoneContext.Purchases.Add(purchase);
+            phoneContext.SaveChanges();
+
+            return $"Уважаемый {purchase.FIO} вам пиздец!";
+        }
     }
 }
