@@ -37,5 +37,14 @@ namespace WebApplication2.Controllers
 
             return $"Уважаемый {purchase.FIO} вам пиздец!";
         }
+
+        [HttpGet]
+        public ActionResult Purchases()
+        {
+            IEnumerable<Purchase> purchase = phoneContext.Purchases;
+            ViewBag.Purchases = purchase;
+
+            return View(phoneContext.Phones);
+        }
     }
 }

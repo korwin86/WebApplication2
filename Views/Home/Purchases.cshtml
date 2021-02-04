@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApplication2.Models.Phone>
+@{ Layout = "/Views/Shared/_Layout.cshtml"; }
+
+<h3>Покупатели</h3>
+
+<br />
+
+<table>
+    <thead>
+        <tr>
+            <td>Id покупки</td>
+            <td>Время покупки</td>
+            <td>Модель телефона</td>
+            <td>Цена (руб)</td>
+            <td>ФИО</td>
+            <td>Email</td>
+            <td>Адрес</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var Phones = Model.ToList();
+            foreach (var purchase in ViewBag.Purchases)
+            {
+                var Phone = Phones.First(i => i.Id == purchase.PhoneId);
+                string PhoneName = Phone.Name;
+                var PhonePrice = Phone.Price;
+
+                <tr>
+                    <td> @purchase.PurchaseId </td>
+                    <td> @purchase.DateTime </td>
+                    <td> @PhoneName</td>
+                    <td> @PhonePrice</td>
+                    <td> @purchase.FIO </td>
+                    <td> @purchase.Email </td>
+                    <td> @purchase.Address </td>
+                </tr>
+
+
+            }
+
+        }
+    </tbody>
+</table>
